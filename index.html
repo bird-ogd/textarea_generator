@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Textarea Generator</title>
+</head>
+<body>
+
+	<style>
+
+	* {
+		background-color: #edf4ff;
+	}
+
+	textarea {
+		width: 100%;
+		height: 150px;
+		padding: 12px 20px;
+		box-sizing: border-box;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		resize: none;
+	}
+
+	h2 {
+		text-align: center;
+	}
+
+	button {
+		display: block;
+		width: 100%;
+		height: 50px;
+		background-color: lightgreen;
+	}
+
+</style>
+
+<script>
+	function am_pm() {
+		var d = new Date(); 
+		if(d.getHours < 12) {
+			return "Morning";
+		} else {
+			return "Afternoon";
+		}
+	}
+
+	function copy_text(element) {
+		var copyText = element;
+		copyText.select();
+		document.execCommand("copy");
+	}
+
+	function ta_gen(title, content) {
+		var heading = document.createElement("h2");
+		var textarea = document.createElement("textarea");
+		var copyButton = document.createElement("button");
+		heading.innerHTML = title;
+		textarea.innerHTML = content;
+		copyButton.innerHTML = "Copy";
+		document.body.appendChild(heading);
+		document.body.appendChild(textarea);
+		document.body.appendChild(copyButton);
+		copyButton.onclick = function(){copy_text(textarea)}
+	}
+
+	var timeofday = am_pm();
+	</script>
+
+	<script>
+		
+		// Add text areas
+
+		ta_gen("Sample email", "Good " + timeofday + "\n\n **EMAIL CONTENT**")
+
+	</script>
+</body>
+</html>
+
